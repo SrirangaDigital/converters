@@ -212,6 +212,8 @@ if(@ARGV != 2)
 $filename = $ARGV[0];
 $unifile = $ARGV[1];
 
+print $unifile;
+
 #~ print $filename . "->" . $unifile . "\n";
 #~ exit(1)
 #~ $filename = "/home/sriranga/projects/Nagpur_Ashram_ebook/books/H201/text/index.txt";

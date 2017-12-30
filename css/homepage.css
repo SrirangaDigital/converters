@@ -1,0 +1,8 @@
+.converter-box{
+	margin-top: 100px;
+	min-height: 80vh;
+}
+.converter-box h1{
+	font-size: 32px;
+	margin-top: 24px;
+}
