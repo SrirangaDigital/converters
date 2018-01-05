@@ -212,8 +212,6 @@ if(@ARGV != 2)
 $filename = $ARGV[0];
 $unifile = $ARGV[1];
 
-print $unifile;
-
 #~ print $filename . "->" . $unifile . "\n";
 #~ exit(1)
 #~ $filename = "/home/sriranga/projects/Nagpur_Ashram_ebook/books/H201/text/index.txt";
@@ -236,7 +234,8 @@ $chap = 0;
 while($line)
 {
 	chop($line);
-		
+	
+	$line = doGlobalSearch($line);	
 	$line = convert_string($line);
 
 	print OUT $line . "\n";			
@@ -251,6 +250,15 @@ while($line)
 
 close(IN);
 close(OUT);				
+
+sub doGlobalSearch(){
+
+	my($string) = @_;
+
+	$string =~ s/Ë/&b/g;
+	
+	return $string;
+}
 
 sub convert_string()
 {
