@@ -412,10 +412,11 @@ sub Convert_to_Devnag()
 			$devtex =~ s/a/A/;
 			replace_reg();
 			$devtex = $devtex . $GrB_a{$hex} . "xa";
+			#printdev();
 		}		
 		elsif(($devtex ne "") && ($prev =~ /1|2/))
 		{
-			#printdev();
+			#~ printdev();
 			if( ($danda == 0) && ($devtex =~ /x/) )
 			{
 				$devtex =~ s/x$/a/;	
@@ -441,7 +442,8 @@ sub Convert_to_Devnag()
 			#printdev();
 		}	
 		$prev = 2;
-		#print $devtex . "\n";
+		#~ print $devtex . "\n";
+		#printdev();
 	}
 	elsif(is_GRC($hex))
 	{
@@ -503,6 +505,7 @@ sub Convert_to_Devnag()
 		#print $hex . "->" . $list[$i] . "->E\n";			
 		$devtex = $devtex . $GrE_a{$hex};		
 		$prev = 5;
+		#printdev();
 	}
 	elsif(is_GRF($hex))
 	{
@@ -694,6 +697,7 @@ sub Convert_to_Devnag()
 			$devtex =~ s/x//;
 			$devtex =~ s/(a|A)$/I/;
 			$danda = 0;
+			#printdev();
 		}
 		elsif( ($prev == 6) && ($list[$i] eq "r"))
 		{
@@ -847,6 +851,7 @@ sub Convert_to_Devnag()
 			}
 			elsif( ($GrF_a{$hex} eq "e.m") && ($prev == 1))
 			{
+				#printdev();
 				if($danda == 1)
 				{
 					$devtex =~ s/.$/e.m/;
@@ -856,7 +861,7 @@ sub Convert_to_Devnag()
 					$devtex =~ s/.$/o.m/;
 				}
 			}
-			elsif( ($GrF_a{$hex} eq "e.m") && ($prev == 2))
+			elsif( ($GrF_a{$hex} eq "e.m") && (($prev == 2) || ($prev == 6)))
 			{
 				if($danda == 1)
 				{
@@ -913,6 +918,7 @@ sub Convert_to_Devnag()
 	}
 	elsif(($hex eq "65") || ($hex eq "ED"))
 	{
+
 		$danda++;
 		if(($danda == 1) && ($prev == 1) && ($devtex !~ /^a/) && ($devtex !~ /i|\.m/))
 		{			
@@ -926,6 +932,11 @@ sub Convert_to_Devnag()
 			#printdev();
 		}
 		elsif(($danda == 1) && ($prev == 2))
+		{
+			$devtex =~ s/a$/A/;
+			#printdev();
+		}
+		elsif(($danda == 1) && ($prev == 6))
 		{
 			$devtex =~ s/a$/A/;
 			#printdev();
