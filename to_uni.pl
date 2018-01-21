@@ -256,6 +256,7 @@ sub doGlobalSearch(){
 	my($string) = @_;
 
 	$string =~ s/Ë/&b/g;
+	$string =~ s/™/¤/g;
 	
 	return $string;
 }
@@ -386,10 +387,16 @@ sub Convert_to_Devnag()
 				#do nothing because already R is there
 				#printdev();
 			}
+			elsif($devtex =~ /R/ && $hex =~ /7B/)
+			{
+				$devtex =~ s/R/R$GrB_a{$hex}/;
+				#printdev();
+			}
 			else
 			{
 				replace_reg();
 				$devtex = $devtex . $GrB_a{$hex} . "xa";
+				#printdev();
 			}
 		}
 		elsif(($devtex ne "") && ($prev =~ /1/) && ($danda == 0))
@@ -509,6 +516,7 @@ sub Convert_to_Devnag()
 	}
 	elsif(is_GRF($hex))
 	{
+		#printdev();
 		#print $hex . "->" . $list[$i] . "->F\n";
 		if( ($prev == 2) && ($devtex =~ /^i/) && ($list[$i] eq "&"))
 		{
@@ -670,6 +678,7 @@ sub Convert_to_Devnag()
 					$devtex =~ s/A$/a/;
 				}
 				$danda--;
+				#printdev();
 			}
 			elsif( ($devtex ne "") && ($devtex =~ /A$/) && ($danda == 1) && ($prev == 2))
 			{
@@ -681,6 +690,7 @@ sub Convert_to_Devnag()
 				$devtex =~ s/A$/a/;
 			}
 			$danda--;
+			#printdev();
 			replace_reg();
 			$devtex = $GrF_a{$hex};
 			#printdev();
@@ -716,7 +726,14 @@ sub Convert_to_Devnag()
 			$devtex =~ s/x//;
 			$devtex =~ s/a$/u/;
 			$danda = 0;
-		}		
+		}	
+		elsif( ($prev == 6) && ($list[$i] eq "g"))
+		{
+			$devtex =~ s/x//;
+			$devtex =~ s/a/u/; #newly added
+			$danda = 0;
+			#printdev();
+		}			
 		elsif( ($prev == 1) && ($list[$i] =~ /t|Ò/) )
 		{
 			$devtex =~ s/x//;
@@ -732,8 +749,9 @@ sub Convert_to_Devnag()
 		elsif( ($prev == 6) && ($list[$i] =~ /t|Ò/))
 		{
 			$devtex =~ s/x//;
-			$devtex =~ s/a$/U/;
+			$devtex =~ s/a/U/; #changed a$ to a
 			$danda = 0;
+			#printdev();
 		}		
 		elsif( ($prev == 1) && ($list[$i] eq "=") )
 		{
@@ -815,6 +833,11 @@ sub Convert_to_Devnag()
 		{
 			$devtex =~ s/xa$/$GrF_a{$hex}/;
 			$danda = 0;
+			#printdev();
+		}
+		elsif( ($GrF_a{$hex} eq "/") && ($prev == 2) && ($danda == 0))
+		{
+			$devtex = $devtex . $GrF_a{$hex}; #like hxa/ (हूँ)
 			#printdev();
 		}
 		#~ elsif($list[$i] =~ /b|\[/)
@@ -918,7 +941,7 @@ sub Convert_to_Devnag()
 	}
 	elsif(($hex eq "65") || ($hex eq "ED"))
 	{
-
+		#printdev();
 		$danda++;
 		if(($danda == 1) && ($prev == 1) && ($devtex !~ /^a/) && ($devtex !~ /i|\.m/))
 		{			
