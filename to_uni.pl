@@ -872,6 +872,10 @@ sub Convert_to_Devnag()
 				$devtex = $devtex . $GrF_a{$hex};
 				#printdev();				
 			}
+			elsif( ($GrF_a{$hex} eq ".m") && ($prev == 2) && ($devtex =~ /^h/) && ($danda == 0) )
+			{
+				$devtex = $devtex . $GrF_a{$hex};
+			}
 			elsif( ($GrF_a{$hex} eq "e.m") && ($prev == 1))
 			{
 				#printdev();
@@ -889,6 +893,11 @@ sub Convert_to_Devnag()
 				if($danda == 1)
 				{
 					$devtex =~ s/.$/o.m/;
+				}
+				elsif( ($danda == 0) && ($devtex =~ /^e/) )
+				{
+					$devtex =~ s/.$/.m/;
+					$devtex =~ s/^e/ai/;
 				}
 				else
 				{
