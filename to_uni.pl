@@ -58,7 +58,7 @@ $GrA = "44|4B|69|49|DB|70|50|5F|43|6C|4C|4F|76|68|48|79|59|63|D9|75|4A|4D|3C|6D|
 '153'=>'sr',
 '152'=>'str',
 '178'=>'Y',
-'203A'=>'kr');
+'203A'=>'Xr');
 
 $GrB = "46|54|53|2A|DA|161|22|5B|7B|6F|6A|6E|55|7D|A5|AA|B0|BA|BF|C1|C6|C8|C9|D1|D6|DC|E6|F1|F3|F4|F5|F6|FA|FB|2030|2026|201E|201D|201C|2039|A3";
 %GrB_a = (
@@ -344,9 +344,17 @@ sub Convert_to_Devnag()
 		}
 		elsif(($devtex ne "") && ($prev =~ /1|2/))
 		{
+			#printdev();
 			if( ($devtex =~ /x/) && $hex eq "3E" ) #Added this condition to match gna
 			{
 				$devtex =~ s/x/$GrA_a{$hex}/;
+				#printdev();
+			}
+			elsif($devtex eq "Xrxa" ) #Added this condition to match vra or kra
+			{
+				$devtex =~ s/^X/v/;
+				replace_reg();
+				$devtex = $devtex . $GrA_a{$hex} . "x";
 				#printdev();
 			}
 			else
@@ -358,6 +366,7 @@ sub Convert_to_Devnag()
 		}
 		else
 		{
+			#printdev();
 			replace_reg();
 			$devtex = $devtex . $GrA_a{$hex} . "x";
 			#printdev();
@@ -986,6 +995,12 @@ sub Convert_to_Devnag()
 			$devtex =~ s/p/ph/;
 			#print "\n" . $devtex . "\n";
 		}
+		elsif($devtex =~ /^X/)
+		{
+			$devtex =~ s/X/k/;
+			#print "\n" . $devtex . "\n";
+			#printdev();
+		}
 		else
 		{
 			if($devtex =~ /^(tt)x(a|A|i|u|e|o)/)
@@ -1065,6 +1080,7 @@ sub replace_reg()
 	{
 		$devtex =~ s/a/A/;
 	}
+	$devtex =~ s/^X/v/;
 	$devtex =~ s/x//;
 	$devtex =~ s/^ea/e/;
 	$devtex =~ s/^ia/i/;
