@@ -359,8 +359,10 @@ sub Convert_to_Devnag()
 			}
 			else
 			{
+				#printdev();
 				replace_reg();
 				$devtex = $devtex . $GrA_a{$hex} . "x";
+				#printdev();
 			}			
 			#printdev();
 		}
@@ -372,6 +374,7 @@ sub Convert_to_Devnag()
 			#printdev();
 		}
 		$prev = 1;
+		#printdev();
 	}
 	elsif(is_GRB($hex))
 	{
@@ -445,6 +448,7 @@ sub Convert_to_Devnag()
 		{
 			#print $devtex . "\n";
 			$devtex =~ s/x/$GrB_a{$hex}/;
+			#printdev();
 		}
 		elsif(($devtex ne "") && ($prev == 4))
 		{
@@ -458,6 +462,7 @@ sub Convert_to_Devnag()
 			#printdev();
 		}	
 		$prev = 2;
+		#printdev();
 		#~ print $devtex . "\n";
 		#printdev();
 	}
@@ -534,6 +539,7 @@ sub Convert_to_Devnag()
 		elsif($list[$i] eq "&")
 		{			
 			$devtex = "r" . $devtex;
+			#printdev();
 		}
 		elsif($hex eq "CB")
 		{			
@@ -956,6 +962,7 @@ sub Convert_to_Devnag()
 			}
 		}
 		$prev = 6;
+		#printdev();
 	}
 	elsif(($hex eq "65") || ($hex eq "ED"))
 	{
@@ -984,6 +991,7 @@ sub Convert_to_Devnag()
 		}
 		#$prev = 7;
 		#print "e->" . $danda . "\n";
+		#printdev();
 	}
 	elsif($hex eq "E2")
 	{
@@ -1018,6 +1026,7 @@ sub Convert_to_Devnag()
 				$devtex =~ s/p/ph/;
 			}
 		}
+		#printdev();
 	}
 	elsif($hex eq "2B")
 	{
@@ -1048,9 +1057,13 @@ sub print_line()
 	$final_str =~ s/[\s]+\.h[\s]+/ : /g;	
 	$final_str =~ s/R\.d/R/g;	
 	$final_str =~ s/aY/y/g;	
+	$final_str =~ s/aai/ai/g;	
 	$final_str =~ s/ttk/kt/g;	
 	$final_str =~ s/tkk/tk/g;	
+	$final_str =~ s/ktt/kt/g;	
 	$final_str =~ s/a&/&/g;
+	$final_str =~ s/ni&(k|gh|k\.s)(t|r)a/n\1\2i/g; #this pattern has to be expanded for all possibilities
+	$final_str =~ s/ni&(gh|k\.s)a/n\1i/g;
 	open(TMP,">$uniTXTFile") or die "can't open $uniTXTFile";
 	print TMP $final_str;
 	close(TMP);
@@ -1080,6 +1093,7 @@ sub replace_reg()
 	{
 		$devtex =~ s/a/A/;
 	}
+
 	$devtex =~ s/^X/v/;
 	$devtex =~ s/x//;
 	$devtex =~ s/^ea/e/;
