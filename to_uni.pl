@@ -80,7 +80,7 @@ $GrB = "46|54|53|2A|DA|161|22|5B|7B|6F|6A|6E|55|7D|A5|AA|B0|BA|BF|C1|C6|C8|C9|D1
 'AA'=>'.t.th',
 'B0'=>'.s.t',
 'BA'=>'.d.dh',
-'BF'=>'"nk,',
+'BF'=>'"nk',
 'C1'=>'"ng',
 'C6'=>'dbh',
 'C8'=>'"nkh',
@@ -189,11 +189,11 @@ $GrF = "26|3D|B8|40|41|42|45|51|52|57|58|5A|5C|5D|5E|61|62|64|66|67|71|72|73|74|
 'CA'=>'',
 'CB'=>'rx.m',
 'CC'=>'R',
-'CD'=>'',
-'CE'=>'',
-'CF'=>'',
+'CD'=>'rU',
+'CE'=>'ru',
+'CF'=>'u',
 'D2'=>'U',
-'E9'=>'',
+'E9'=>'xi.m',
 'EA'=>'',
 'EF'=>'',
 'FC'=>'r');
@@ -435,11 +435,19 @@ sub Convert_to_Devnag()
 		}		
 		elsif(($devtex ne "") && ($prev =~ /1|2/))
 		{
-			#~ printdev();
+			#printdev();
 			if( ($danda == 0) && ($devtex =~ /x/) )
 			{
-				$devtex =~ s/x$/a/;	
+				$devtex =~ s/x$/a/;
+				#printdev();	
 			}
+			replace_reg();
+			$devtex = $devtex . $GrB_a{$hex} . "xa";
+			#printdev();
+		}
+		elsif( ($devtex ne "") && ($devtex =~ /x/) && ($prev == 6))
+		{
+			#print $devtex . "\n";
 			replace_reg();
 			$devtex = $devtex . $GrB_a{$hex} . "xa";
 			#printdev();
@@ -611,12 +619,22 @@ sub Convert_to_Devnag()
 			$tmp_str = "";
 			$danda = 0;
 		}
+		elsif( ($hex eq "7A") && ($devtex =~ /A$/) )
+		{
+			#this is for cases like ryau -> Ùeez~
+			$devtex =~ s/A/au/;
+			$devtex = 'r' . $devtex;
+			#printdev();			
+			replace_reg();
+			$danda = 0;
+		}
 		elsif($hex eq "7A")
 		{
 			$tmp_str = $devtex;
 			$tmp_str =~ s/(.*)x(.*)/$1/;
 			$devtex = $GrF_a{$hex};
-			$devtex =~ s/x/$tmp_str/;			
+			$devtex =~ s/x/$tmp_str/;
+			#printdev();			
 			replace_reg();
 			$tmp_str = "";
 			$danda = 0;
@@ -808,6 +826,13 @@ sub Convert_to_Devnag()
 		{
 			$devtex =~ s/(a|A)$/e/;
 			$danda = 0;
+			#printdev();
+		}		
+		elsif( ($prev == 6) && ($list[$i] eq "s") && ($danda == 1) )
+		{
+			$devtex =~ s/A$/o/; #this is to handle the case like mro->ceües
+			$danda = 0;
+			#printdev();
 		}		
 		elsif( ($prev == 6) && ($list[$i] eq "s") && ($danda == 2) )
 		{
@@ -836,6 +861,11 @@ sub Convert_to_Devnag()
 		{
 			$devtex =~ s/x//;
 			$devtex =~ s/(a|A)$/au/;
+			$danda = 0;
+		}
+		elsif( ($prev == 2) && ($hex eq "CE"))
+		{
+			$devtex =~ s/a$/$GrF_a{$hex}/;
 			$danda = 0;
 		}
 		elsif($hex =~ /C7|FC/)
