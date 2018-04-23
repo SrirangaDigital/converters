@@ -113,6 +113,7 @@ class Converter{
 		$text = (preg_match('/^[\hf]+$/', $text)) ? str_replace('f', '॥', $text) : $text;
 		// $text = (preg_match('/^[\h=]+$/', $text)) ? str_replace('=', '=', $text) : $text;
 		$text = (preg_match('/^[\hi]+$/', $text)) ? str_replace('i', 'ಽ', $text) : $text;
+		$text = $text = str_replace('õ', '—', $text);
 
 		$text = '<span class="en">' . $text . '</span>';
 		return $text;
@@ -144,7 +145,7 @@ class Converter{
 		}
 
 		$html = html_entity_decode($dom->saveXML());
-		$html = preg_replace('/<span class="en">([[:punct:]।॥ಽ\h]+)<\/span>/', "$1", $html);
+		$html = preg_replace('/<span class="en">([[:punct:]।॥ಽ—\h]+)<\/span>/', "$1", $html);
 
 		return $html;
 	}
@@ -170,6 +171,8 @@ class Converter{
 		$text = str_replace('pê°ü°', 'ಝೆ', $text);
 		$text = str_replace('pê°ü³', 'ಝೊ', $text);
 		$text = str_replace('î°ü°', 'ಝಿ', $text);
+
+		$text = str_replace('n°', 'ಋ', $text);
 
 		// Lookup ---------------------------------------------
 		$text = str_replace('!', '!', $text);
@@ -384,12 +387,14 @@ class Converter{
 		$text = str_replace('ಿ©', 'ೀ', $text);
 		$text = str_replace('ೆ©', 'ೇ', $text);
 		$text = str_replace('ೊ©', 'ೋ', $text);
+		$text = preg_replace('/ೆ\h*ೖ/', 'ೈ', $text);
 
-		$text = preg_replace("/($swaraJoin)್($vyanjana)/u", "್$2$1", $text);
+		$text = preg_replace("/($swaraJoin)\h*್($vyanjana)/u", "್$2$1", $text);
 
 		$text = preg_replace("/($syllable)/u", "$1zzz", $text);
 		$text = preg_replace("/್zzz/u", "್", $text);
 		$text = preg_replace("/zzz([^z]*?)zzzR/u", "zzzರ್zzz" . "$1", $text);
+		$text = preg_replace("/zzz([^z]*?)R/u", "zzzರ್" . "$1", $text);
 
 		$text = str_replace("zzz", "", $text);
 
