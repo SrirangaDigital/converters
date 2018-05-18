@@ -35,11 +35,11 @@
             <a class="navbar-brand" href="#"><img src="images/logo_sriranga.png" alt="Logo" class="Sriranga logo"></a>
             <p class="navbar-text" id="navbarText">Sriranga Digital Software Technologies<br /><small>Private Limited</small></p>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav nav ml-auto">
-                    <li><a href="#">Converters</a></li>
-                </ul>
-            </div>
+<?php
+
+	require "menu.php"
+
+?>
         </div>
     </nav>
     <!-- End Navigation
