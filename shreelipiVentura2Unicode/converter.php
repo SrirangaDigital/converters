@@ -425,67 +425,49 @@ class Converter{
 
 	public function shreelipi2Unicode ($text) {
 
+
 		// Initial parse
 
-		$text = str_replace('"j', 'j"', $text);
-
 		// ya group
-		$text = str_replace('O"', 'ಯ', $text);
-		$text = str_replace('O{', 'ಯ', $text);
-		$text = str_replace('Ò"', 'ಯೆ', $text);
-		$text = str_replace('Òr', 'ಯೊ', $text);
-		$text = str_replace('h"', 'ಯಿ', $text);
-
+		$text = str_replace('¿åé', 'ಯ್​', $text); // Caution! zero width space found after halanta
+		$text = str_replace('¿á', 'ಯ', $text);
+		$text = str_replace('¿Þ', 'ಯಾ', $text);
+		$text = str_replace('Àá', 'ಯಿ', $text);
+		$text = str_replace('Áá', 'ಯೆ', $text);
+		$text = str_replace('Áã', 'ಯೊ', $text);
+		$text = str_replace('¿åè', 'ಯೌ', $text);
+		
 		// ma group
-		$text = str_replace('Aj"', 'ಮ', $text);
-		$text = str_replace('Aj{', 'ಮ', $text);
-		$text = str_replace('Au"', 'ಮೆ', $text);
-		$text = str_replace('Aur', 'ಮೊ', $text);
-		$text = str_replace('a"', 'ಮಿ', $text);
+		$text = str_replace('ÊÜåé', 'ಮ್​', $text); // Caution! zero width space found after halanta
+		$text = str_replace('ÊÜá', 'ಮ', $text);
+		$text = str_replace('ÊÜÞ', 'ಮಾ', $text);
+		$text = str_replace('Ëá', 'ಮಿ', $text);
+		$text = str_replace('ËÞ', 'ಮೀ', $text);
+		$text = str_replace('Êæá', 'ಮೆ', $text);
+		$text = str_replace('Êæã', 'ಮೊ', $text);
+		$text = str_replace('ÊÜåè', 'ಮೌ', $text);
+		
 		
 		// jjha group
-		$text = str_replace('Újs"', 'ಝ', $text);
-		$text = str_replace('Úus"', 'ಝೆ', $text);
-		$text = str_replace('Úusr', 'ಝೊ', $text);
-		$text = str_replace('Ys"', 'ಝಿ', $text);
-
-		// swara
-
-		// Vyanjana
-		$text = str_replace('ül', 'ಛ್', $text);
-		$text = str_replace('Vl', 'ಛಿ', $text);
-
-		$text = str_replace('Úm', 'ಠ್', $text);
-		$text = str_replace('Ym', 'ಠಿ', $text);
-
-		$text = str_replace('Ûk', 'ಢ್', $text);
-		$text = str_replace('Zk', 'ಢಿ', $text);
-
-		$text = str_replace(';nk', 'ಥ್', $text);
-		$text = str_replace(']nk', 'ಥಿ', $text);
-
-		$text = str_replace(';k', 'ಧ್', $text);
-		$text = str_replace(']k', 'ಧಿ', $text);
+		$text = str_replace('ÃÜkåé', 'ಝ್​', $text); // Caution! zero width space found after halanta
+		$text = str_replace('ÃÜká', 'ಝ', $text);
+		$text = str_replace('ÃÜkÞ', 'ಝಾ', $text);
+		$text = str_replace('Äká', 'ಝಿ', $text);
+		$text = str_replace('Ãæká', 'ಝೆ', $text);
+		$text = str_replace('Ãækã', 'ಝೊ', $text);
+		$text = str_replace('ÃÜkåè', 'ಝೌ', $text);
 		
-		$text = str_replace('=k', 'ಫ್', $text);
-		$text = str_replace('_k', 'ಫಿ', $text);
-
-		$text = str_replace('æl', 'ಭ್', $text);
-		$text = str_replace('vl', 'ಭಿ', $text);
-		$text = str_replace('`l', 'ಭಿ', $text);
-
-		$text = str_replace('Š‡', '್ಧ', $text);
-		$text = str_replace('†‡', '್ಢ', $text);
-		$text = str_replace('’‡', '್ಭ', $text);
+		// RRi group
+		$text = str_replace('Má', 'ಋ', $text);
+		$text = str_replace('Mã', 'ೠ', $text);
 
 
 		// Lookup ---------------------------------------------
 
-
 		$text = str_replace('!', '!', $text);
 		$text = str_replace('#', 'x', $text);
+		$text = str_replace('$', '', $text);
 		$text = str_replace('%', '%', $text);
-		$text = str_replace('&', '-', $text);
 		$text = str_replace('(', '(', $text);
 		$text = str_replace(')', ')', $text);
 		$text = str_replace('*', '*', $text);
@@ -524,7 +506,7 @@ class Converter{
 		$text = str_replace('L', 'ಔ', $text);
 		$text = str_replace('M', 'M', $text);// pre processing
 		$text = str_replace('N', 'ಶ್ರಿ', $text);
-		$text = str_replace('O', 'ನ್', $text);//?
+		$text = str_replace('O', 'ನ್', $text);// 
 		$text = str_replace('P', 'ಕ್', $text);
 		$text = str_replace('Q', 'ಕಿ', $text);
 		$text = str_replace('R', '್ಕ', $text);
@@ -548,7 +530,7 @@ class Converter{
 		$text = str_replace('d', 'ಛ್', $text);
 		$text = str_replace('e', 'ಛಿ', $text);
 		$text = str_replace('f', '್ಛ', $text);
-		$text = str_replace('g', 'ಜ	', $text);
+		$text = str_replace('g', 'ಜ', $text);
 		$text = str_replace('h', 'ಜ್', $text);
 		$text = str_replace('i', 'ಜಿ', $text);
 		$text = str_replace('j', '್ಜ', $text);
@@ -593,7 +575,7 @@ class Converter{
 		$text = str_replace('ª', '್ದ', $text);
 		$text = str_replace('«', 'ಧ್', $text);
 		$text = str_replace('¬', 'ಧಿ', $text);
-		// $text = str_replace('-', '್ಧ', $text); // soft hyphen ?
+		$text = str_replace('-', '್ಧ', $text); // soft hyphen ?
 		$text = str_replace('®', 'ನ್', $text);
 		$text = str_replace('¯', 'ನಿ', $text);
 		$text = str_replace('°', '್ನ', $text);
@@ -649,17 +631,17 @@ class Converter{
 		$text = str_replace('â', 'ು', $text);
 		$text = str_replace('ã', 'ೂ', $text);
 		$text = str_replace('ä', 'ೂ', $text);
-		$text = str_replace('å', 'å', $text); // post processing
+		$text = str_replace('å', 'å', $text); // pre processing
 		$text = str_replace('æ', 'ೆ', $text);
 		$text = str_replace('ç', 'ೈ', $text);
 		$text = str_replace('è', 'ೌ', $text);
-		$text = str_replace('é', '್', $text);
+		$text = str_replace('é', '್​', $text); // Caution! zero width space found after halanta
 		$text = str_replace('ê', 'ೃ', $text);
 		$text = str_replace('ë', 'ೄ', $text);
-		$text = str_replace('ì', 'ì', $text); // ಅರ್ಕ ಒತ್ತು
+		$text = str_replace('ì', 'ì', $text); // ಅರ್ಕ ಒತ್ತು - post processing
 		$text = str_replace('í', 'ಂ', $text);
-		$text = str_replace('î', 'î', $text); // pre proccessing - Jha group
-		$text = str_replace('ï', 'ï', $text); // pre proccessing - Jha group
+		$text = str_replace('î', 'î', $text); // pre proccessing - pending
+		$text = str_replace('ï', 'ï', $text); // pre proccessing - pending
 		$text = str_replace('ð', '್ಕ್ರ', $text);
 		$text = str_replace('ñ', '್ಕೃ', $text);
 		$text = str_replace('ò', '್ಬೈ', $text); // kirik
@@ -672,49 +654,22 @@ class Converter{
 		$text = str_replace('ù', '್ರೈ', $text);
 		$text = str_replace('ú', '್ಸ್ರ', $text);
 		$text = str_replace('û', 'ಕ್ಷ್', $text);
-		$text = str_replace('ü', 'ಕ್ಷಿ ', $text);
+		$text = str_replace('ü', 'ಕ್ಷಿ', $text);
 		$text = str_replace('ý', 'ಜ್ಞ', $text);
 		$text = str_replace('þ', 'ಜ್ಞ್', $text);
 		$text = str_replace('ÿ', 'ಜ್ಞಿ', $text);
 		$text = str_replace('Š', '÷', $text);
 		$text = str_replace('"', '‘', $text);
 		$text = str_replace("'", '’', $text);
+		$text = str_replace('&', '-', $text);
 		
-		
-		
-		//~ $text = str_replace('Œ', '್ಪ', $text);
-		//~ $text = str_replace('œ', '್ಸ', $text);
-		//~ $text = str_replace('Š', '', $text);
-		//~ $text = str_replace('š', '್ಲ', $text);
-		$text = str_replace('–', '-', $text);
-		$text = str_replace('—', '', $text);
-		//~ $text = str_replace('†', '್ಡ', $text);
-		//~ $text = str_replace('‡', '', $text); //?
-		//~ $text = str_replace('‰', '್ತ', $text);
-		//~ $text = str_replace('‹', '್ನ', $text);
-		//~ $text = str_replace('›', '್ಷ', $text);
-		//~ $text = str_replace('™', '', $text);
-		//~ $text = str_replace('•', '್ತ್ಯ', $text);
-
-
 		// Special cases
-
-		// remove ottu spacer
-		$text = str_replace('õ', '', $text);
-		$text = str_replace('ï', '', $text);
-		$text = str_replace('ñ', '', $text);
-		$text = str_replace('ð', '', $text);
 
 		// Swara
 		$text = preg_replace('/್[ಅ]/u', '', $text);
 		$text = preg_replace('/್([ಾಿೀುೂೃೄೆೇೈೊೋೌ್])/u', "$1", $text);
 		
 		// vyanjana
-		$text = str_replace('ವt', 'ಮಾ', $text);
-		$text = str_replace('ಯ್t', 'ಯಾ', $text);
-		$text = str_replace('ಫì', 'ಘ', $text);
-		$text = str_replace('ಫೆì', 'ಘೆ', $text);
-		$text = str_replace('ಫಿì', 'ಘಿ', $text);
 
 		$text = str_replace('ೊ', 'ೊ', $text);
 		$text = str_replace('ೆೈ', 'ೈ', $text);
@@ -732,27 +687,29 @@ class Converter{
 		$text = str_replace('ೊ', 'ೊ', $text);
 		$text = str_replace('ೆೈ', 'ೈ', $text);
 
-		$text = str_replace('ಿ|', 'ೀ', $text);
-		$text = str_replace('ೆ|', 'ೇ', $text);
-		$text = str_replace('ೊ|', 'ೋ', $text);
+		$text = str_replace('ಿà', 'ೀ', $text);
+		$text = str_replace('ೆà', 'ೇ', $text);
+		$text = str_replace('ೊà', 'ೋ', $text);
 
 		$text = preg_replace("/($swaraJoin)್($vyanjana)/u", "್$2$1", $text);
 
 		$text = preg_replace("/($syllable)/u", "$1zzz", $text);
 		$text = preg_replace("/್zzz/u", "್", $text);
-		$text = preg_replace("/zzz([^z]*?)zzzR/u", "zzzರ್zzz" . "$1", $text);
+		$text = preg_replace("/zzz([^z]*?)zzzì/u", "zzzರ್zzz" . "$1", $text);
 
 		$text = str_replace("zzz", "", $text);
 
 		$text = str_replace('ೊ', 'ೊ', $text);
 		$text = str_replace('ೆೈ', 'ೈ', $text);
 
-		$text = str_replace('ಿ|', 'ೀ', $text);
-		$text = str_replace('ೆ|', 'ೇ', $text);
-		$text = str_replace('ೊ|', 'ೋ', $text);
+		$text = str_replace('ಿà', 'ೀ', $text);
+		$text = str_replace('ೆà', 'ೇ', $text);
+		$text = str_replace('ೊà', 'ೋ', $text);
 
-		$text = preg_replace("/([[:punct:]\s0-9])ಂ/u", '${1}' . '0', $text);
-
+		// Final replacements
+		$text = str_replace(' ್', '್', $text);
+		$text = str_replace('।।', '॥', $text);
+		
 		return $text;
 	}
 
