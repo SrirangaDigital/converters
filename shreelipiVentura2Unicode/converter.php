@@ -448,7 +448,6 @@ class Converter{
 
 	public function shreelipi2Unicode ($text) {
 
-
 		// Initial parse
 
 		// ya group
@@ -599,6 +598,7 @@ class Converter{
 		$text = str_replace('«', 'ಧ್', $text);
 		$text = str_replace('¬', 'ಧಿ', $text);
 		$text = str_replace('-', '್ಧ', $text); // soft hyphen ?
+		$text = str_replace('­', '್ಧ', $text); // Caution! Soft hyphen present.
 		$text = str_replace('®', 'ನ್', $text);
 		$text = str_replace('¯', 'ನಿ', $text);
 		$text = str_replace('°', '್ನ', $text);
@@ -713,13 +713,30 @@ class Converter{
 		$text = str_replace('ಿà', 'ೀ', $text);
 		$text = str_replace('ೆà', 'ೇ', $text);
 		$text = str_replace('ೊà', 'ೋ', $text);
+	
+		$text = str_replace('​ì', 'ì​', $text);
 
 		$text = preg_replace("/($swaraJoin)್($vyanjana)/u", "್$2$1", $text);
-
+	
+		// First pass of repha inversion
 		$text = preg_replace("/($syllable)/u", "$1zzz", $text);
 		$text = preg_replace("/್zzz/u", "್", $text);
+		$text = preg_replace("/್ì/u", "್zzzì", $text);
 		$text = preg_replace("/zzz([^z]*?)zzzì/u", "zzzರ್zzz" . "$1", $text);
+		$text = str_replace("zzz", "", $text);
 
+		$text = str_replace('ೊ', 'ೊ', $text);
+		$text = str_replace('ೆೈ', 'ೈ', $text);
+
+		$text = str_replace('ಿà', 'ೀ', $text);
+		$text = str_replace('ೆà', 'ೇ', $text);
+		$text = str_replace('ೊà', 'ೋ', $text);
+
+		// Second pass of repha inversion
+		$text = preg_replace("/($syllable)/u", "$1zzz", $text);
+		$text = preg_replace("/್zzz/u", "್", $text);
+		$text = preg_replace("/್ì/u", "್zzzì", $text);
+		$text = preg_replace("/zzz([^z]*?)zzzì/u", "zzzರ್zzz" . "$1", $text);
 		$text = str_replace("zzz", "", $text);
 
 		$text = str_replace('ೊ', 'ೊ', $text);
@@ -783,6 +800,127 @@ class Converter{
 
 		return $text;
 	}
-}
 
+	public function utf82ansi ($text) {
+		
+		// Pre processing
+		$text = str_replace('fl', 'ﬂ', $text);
+		$text = str_replace('fi', 'ﬁ', $text);
+		
+		// Lookup ---------------------------------------------
+
+		// $text = str_replace('ê', '', $text); // ignored for now due to lack of proper code point
+		// $text = str_replace(' ', 'ð', $text); //not found
+
+		$text = str_replace('ä', "Š", $text);
+		$text = str_replace('«', "Ç", $text); 
+		$text = str_replace('´', "«", $text);
+		$text = str_replace('¥', "´", $text);
+		$text = str_replace('•', "¥", $text);
+		$text = str_replace('ï', "•", $text);
+		$text = str_replace('Ô', "ï", $text);
+		$text = str_replace('‘', "Ô", $text);
+		$text = str_replace('ë', "‘", $text);
+		$text = str_replace('Í', "ê", $text);
+		$text = str_replace('Õ', "Í", $text);
+		$text = str_replace('’', "Õ", $text);
+		$text = str_replace('í', "’", $text);
+		$text = str_replace('–', "Ð", $text);
+		$text = str_replace('ñ', "–", $text);
+		$text = str_replace('Ò', "ñ", $text);
+		$text = str_replace('“', "Ò", $text);
+		$text = str_replace('ì', "“", $text);
+
+		$text = str_replace('Ó', "†", $text);
+		$text = str_replace('”', "Ó", $text);
+		$text = str_replace('î', "”", $text);
+		$text = str_replace('†', "î", $text);
+
+		$text = str_replace('—', "Ñ", $text);
+		$text = str_replace('ó', "—", $text);
+		$text = str_replace('÷', "Ö", $text);
+		$text = str_replace('˜', "÷", $text);	
+		$text = str_replace('ò', "˜", $text);
+		$text = str_replace('Á', "ç", $text);
+		$text = str_replace('¡', "Á", $text);
+		$text = str_replace('¢', "¢", $text);
+		$text = str_replace('£', "£", $text);
+		$text = str_replace('Û', "ó", $text);
+		$text = str_replace('¤', "Û", $text);
+		$text = str_replace('§', "¤", $text);
+		$text = str_replace('¶', "¦", $text);
+		$text = str_replace('ß', "§", $text);
+		$text = str_replace('Â', "å", $text);
+		$text = str_replace('¬', "Â", $text);
+		$text = str_replace('¨', "¬", $text);
+		$text = str_replace('®', "¨", $text);
+		$text = str_replace('©', "©", $text);
+		$text = str_replace('È', "é", $text);
+		$text = str_replace('»', "È", $text);
+		$text = str_replace('ª', "»", $text);
+		$text = str_replace('™', "ª", $text);
+		$text = str_replace('≠', "-", $text);
+		$text = str_replace('°', "¡", $text);
+		$text = str_replace('∞', "°", $text);
+		$text = str_replace('±', "±", $text);
+		$text = str_replace('≤', "²", $text);
+		$text = str_replace('≥', "³", $text);
+		$text = str_replace('μ', "μ", $text);
+		$text = str_replace('∂', "¶", $text);
+		$text = str_replace('·', "á", $text);
+		$text = str_replace('∑', "·", $text);
+		$text = str_replace('¸', "ü", $text);
+		$text = str_replace('∏', "¸", $text);
+		$text = str_replace('π', "¹", $text);
+		$text = str_replace('º', "¼", $text);
+		$text = str_replace('∫', "º", $text);
+		$text = str_replace('Ω', "½", $text);
+		$text = str_replace('æ', "¾", $text);		
+		$text = str_replace('Ë', "è", $text);
+		$text = str_replace('À', "Ë", $text);
+		$text = str_replace('¿', "À", $text);
+		$text = str_replace('ø', "¿", $text);
+		$text = str_replace('¯', "ø", $text);
+		$text = str_replace('Ø', "¯", $text);
+		$text = str_replace('Ì', "í", $text);
+		$text = str_replace('Ã', "Ì", $text);
+		$text = str_replace('√', "Ã", $text);
+		$text = str_replace('ƒ', "Ä", $text);
+		$text = str_replace('≈', "Å", $text);
+		$text = str_replace('Æ', "®", $text);
+		$text = str_replace('Δ', "Æ", $text);
+		$text = str_replace('…', "É", $text);
+		$text = str_replace('Ê', "æ", $text);
+		$text = str_replace(' ', "Ê", $text);
+		$text = str_replace('Î', "ë", $text);
+		$text = str_replace('Œ', "Î", $text);
+		$text = str_replace('Ï', "ì", $text);
+		$text = str_replace('œ', "Ï", $text);
+		$text = str_replace('◊', "×", $text);
+		$text = str_replace('ÿ', "Ø", $text);
+		$text = str_replace('Ù', "ô", $text);
+		$text = str_replace('Ÿ', "Ù", $text);
+		$text = str_replace('Ú', "ò", $text);
+		$text = str_replace('⁄', "Ú", $text);
+		$text = str_replace('‹', "Ü", $text);
+		$text = str_replace('›', "Ý", $text);
+		$text = str_replace('ﬁ', "Þ", $text);
+		$text = str_replace('ﬂ', "ß", $text);
+		$text = str_replace('‡', "à", $text);
+		$text = str_replace('‚', "â", $text);
+		$text = str_replace('„', "ã", $text);
+		$text = str_replace('‰', "ä", $text);
+		$text = str_replace('ı', "õ", $text);
+		$text = str_replace('ˆ', "ö", $text);
+		$text = str_replace('˘', "ù", $text);
+		$text = str_replace('˙', "ú", $text);
+		$text = str_replace('˚', "û", $text);
+		$text = str_replace('˝', "ý", $text);
+		$text = str_replace('˛', "þ", $text);
+		$text = str_replace('ˇ', "ÿ", $text);
+
+		return $text;
+	}
+}
+	
 ?>
