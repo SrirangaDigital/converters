@@ -446,6 +446,13 @@ class Converter{
 		return $text;
 	}
 
+	public function convertShreelipi2Unicode ($fileName) {
+
+		$ansiText = file_get_contents($fileName);
+		$unicodeText = $this->shreelipi2Unicode($ansiText);
+		file_put_contents(str_replace('Stage1', 'Stage4', $fileName), $unicodeText);
+	}
+
 	public function shreelipi2Unicode ($text) {
 
 		// Initial parse
@@ -455,6 +462,7 @@ class Converter{
 		$text = str_replace('¿á', 'ಯ', $text);
 		$text = str_replace('¿Þ', 'ಯಾ', $text);
 		$text = str_replace('Àá', 'ಯಿ', $text);
+		$text = str_replace('ÀÞ', 'ಯೀ', $text);
 		$text = str_replace('Áá', 'ಯೆ', $text);
 		$text = str_replace('Áã', 'ಯೊ', $text);
 		$text = str_replace('¿åè', 'ಯೌ', $text);
@@ -468,7 +476,6 @@ class Converter{
 		$text = str_replace('Êæá', 'ಮೆ', $text);
 		$text = str_replace('Êæã', 'ಮೊ', $text);
 		$text = str_replace('ÊÜåè', 'ಮೌ', $text);
-		
 		
 		// jjha group
 		$text = str_replace('ÃÜkåé', 'ಝ್​', $text); // Caution! zero width space found after halanta
@@ -584,7 +591,7 @@ class Converter{
 		$text = str_replace('•', '್ಱ', $text);
 		$text = str_replace('–', '–', $text);
 		$text = str_replace('—', '—', $text);
-		$text = str_replace('˜', 'ऽ', $text);
+		$text = str_replace('˜', 'ಽ', $text);
 		$text = str_replace('¡', '್ಣ', $text);
 		$text = str_replace('¢', 'ತ್', $text);
 		$text = str_replace('£', 'ತಿ', $text);
@@ -745,6 +752,8 @@ class Converter{
 		$text = str_replace('ಿà', 'ೀ', $text);
 		$text = str_replace('ೆà', 'ೇ', $text);
 		$text = str_replace('ೊà', 'ೋ', $text);
+	
+		$text = str_replace('ವಿೂ', 'ಮೀ', $text);
 
 		// Final replacements
 		$text = str_replace(' ್', '್', $text);
