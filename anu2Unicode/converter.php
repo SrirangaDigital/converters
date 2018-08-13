@@ -8,7 +8,6 @@ class Converter{
 
 	public function anu2Unicode ($text) {
 
-		
 		// Initial parse
 		// $text = str_replace('fl', 'ﬂ', $text);
 		// $text = str_replace('fi', 'ﬁ', $text);
@@ -19,6 +18,7 @@ class Converter{
 		$text = str_replace('Ô~', '~Ô', $text);
 		$text = str_replace('ÔQ', 'QÔ', $text);
 		$text = str_replace('¿ã', 'ã¿', $text);
+		$text = str_replace('¿Ç', 'Ç¿', $text);
 		$text = str_replace('¿Ñ', 'Ñ¿', $text);
 		$text = str_replace('ÃÑ', 'ÑÃ', $text);
 		$text = str_replace('Ãã', 'ãÃ', $text);
@@ -32,7 +32,7 @@ class Converter{
 		$text = preg_replace('/[åê•ß®ÍÏ]/u', 'å', $text); // ా
 		$text = preg_replace('/[ç≤˜]/u', 'ç', $text); // ి
 		$text = preg_replace('/[ô©‘]/u', 'ô', $text); // ీ
-		$text = preg_replace('/[∞μΩ√]/u', '∞', $text); // ు
+		$text = preg_replace('/[∞μµΩΩ√]/u', '∞', $text); // ు
 		$text = preg_replace('/[ÄØ¥∂Ó]/u', 'Ä', $text); // ూ
 		$text = preg_replace('/[≥Ã‹Ôˇ]/u', '≥', $text); // ె
 		$text = preg_replace('/[¿ÕËıˆ]/u', '¿', $text); // ే
@@ -40,7 +40,7 @@ class Converter{
 		$text = preg_replace('/[∏⁄Á˘]/u', '∏', $text); // ొ
 		$text = preg_replace('/[À’ŸÈ]/u', 'À', $text); // ో
 		$text = preg_replace('/[∫øœ“Ò]/u', '∫', $text); // ౌ
-		$text = preg_replace('/[òü£±∑π]/u', 'ò', $text); // ్ 
+		$text = preg_replace('/[òü£±∑π]/u', 'ò', $text); // ్ // Caution zero width space present
 
 		// ma group
 		$text = str_replace('=∞', 'మ', $text);
@@ -51,15 +51,17 @@ class Converter{
 		$text = str_replace('=¸', 'మూ', $text);
 		$text = str_replace('"≥∞', 'మె', $text);
 		$text = str_replace('"¿∞', 'మే', $text);
-		// $text = str_replace('∞', 'మై', $text);
+		$text = str_replace('"≥ÿ∞', 'మై', $text);
 		$text = str_replace('"≥Ú', 'మొ', $text);
 		$text = str_replace('"≥Ä', 'మో', $text);
+		$text = str_replace('"ò∞', 'మ్​', $text); // Caution zero width space present
 
 		// ya group
 		$text = str_replace('Üí∞', 'య', $text);
 		$text = str_replace('ÜíÄ', 'యా', $text);
 		$text = str_replace('~Ú', 'యి', $text);
 		$text = str_replace('ÜÄ', 'యీ', $text);
+		$text = str_replace('~¸', 'యీ', $text);
 		$text = str_replace('ÜíÚ', 'యు', $text);
 		$text = str_replace('Üí¸', 'యూ', $text);		
 		$text = str_replace('Ü≥∞', 'యె', $text);
@@ -67,6 +69,7 @@ class Converter{
 		$text = str_replace('Ü≥ÿ∞', 'యై', $text);
 		$text = str_replace('Ü≥Ú', 'యొ', $text);
 		$text = str_replace('Ü≥Ä', 'యో', $text);
+		$text = str_replace('Üò∞', 'య్​', $text); // Caution zero width space present
 
 		// jjha group
 		// ఝ ఝి ఝీ ఝు ఝూ ఝె ఝే ఝై ఝొ ఝో ఝౌ 
@@ -80,9 +83,10 @@ class Converter{
 		$text = str_replace('Çí˙', 'హూ', $text);		
 		$text = str_replace('Ç≥å', 'హె', $text);
 		$text = str_replace('Ç¿å', 'హే', $text);
-		// $text = str_replace('∞', 'హై', $text);
+		$text = str_replace('Ç≥ÿå', 'హై', $text);
 		$text = str_replace('Çíå∏', 'హొ', $text);
 		$text = str_replace('ÇíåÀ', 'హో', $text);
+		$text = str_replace('Çòå', 'హ్​', $text); // Caution zero width space present
 		
 		// gha group
 		$text = str_replace('Ñèí∞', 'ఘ', $text);
@@ -93,10 +97,12 @@ class Converter{
 		$text = str_replace('Ñèí¸', 'ఘూ', $text);		
 		$text = str_replace('Ñè≥∞', 'ఘె', $text);
 		$text = str_replace('Ñè¿∞', 'ఘే', $text);
-		// $text = str_replace('∞', 'ఘై', $text);
+		$text = str_replace('Ñè≥ÿ∞', 'ఘై', $text);
 		$text = str_replace('Ñè≥Ú', 'ఘొ', $text);
 		$text = str_replace('Ñè≥Ä', 'ఘో', $text);
+		$text = str_replace('Ñè≥∞', 'ఘ్​', $text); // Caution zero width space present
 		
+		$text = str_replace('ùù', 'ù', $text);
 		$text = str_replace('Ûù', '్ఛ', $text);
 		$text = str_replace('¤ù', '్ఢ', $text);
 		$text = str_replace('Êù', '్ఫ', $text);
@@ -229,7 +235,7 @@ class Converter{
 		$text = str_replace('ï', 'ï', $text); // pre hu
 		$text = str_replace('ñ', 'ఁ', $text);
 		$text = str_replace('ó', 'ః', $text);
-		$text = str_replace('ò', '్', $text);
+		$text = str_replace('ò', '్​', $text); // Caution zero width space present
 		$text = str_replace('ô', 'ీ', $text);
 		$text = str_replace('ö', '్ఖ', $text);
 		$text = str_replace('õ', 'అ', $text);
@@ -266,7 +272,7 @@ class Converter{
 		$text = str_replace('∫', 'ౌ', $text);
 		$text = str_replace('ª', '్ఠ', $text);
 		$text = str_replace('º', '్య', $text);
-		$text = str_replace('Ω', 'ు', $text);
+		$text = str_replace('Ω', 'ు', $text);
 		$text = str_replace('æ', '్గ', $text);
 		$text = str_replace('ø', 'ౌ', $text);
 		$text = str_replace('¿', 'ే', $text);
@@ -276,6 +282,7 @@ class Converter{
 		$text = str_replace('ƒ', '్బ', $text);
 		$text = str_replace('≈', '్శ', $text);
 		$text = str_replace('Δ', '్ష', $text);
+		$text = str_replace('∆', '్ష', $text);
 		$text = str_replace('«', 'అ', $text);
 		$text = str_replace('»', 'అ', $text);
 		$text = str_replace('…', '్ఘ', $text);
@@ -362,12 +369,17 @@ class Converter{
 		$text = preg_replace("/($swaraJoin)్($vyanjana)/u", "్$2$1", $text);
 		$text = preg_replace("/($swaraJoin)్($vyanjana)/u", "్$2$1", $text);
 		$text = preg_replace("/($swaraJoin)్($vyanjana)/u", "్$2$1", $text);
+		$text = preg_replace("/్​్($vyanjana)/u", "్$1్​", $text);
+		$text = preg_replace("/్​్($vyanjana)/u", "్$1్​", $text);
+		$text = preg_replace("/్​్($vyanjana)/u", "్$1్​", $text);
 
 		// Ra ottu inversion
 		$text = preg_replace("/¢($vyanjana)/u", "$1" . "్ర", $text);
 
 		// Spaces before ottu should be removed
 		$text = str_replace(' ్', "్", $text);
+		$text = str_replace(' ృ', "ృ", $text);
+		$text = str_replace('ౖ', "<!-- <error>ౖ</error> -->", $text);
 
 		// Final replacements
 		$text = str_replace('।।', '॥', $text);
