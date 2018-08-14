@@ -15,32 +15,23 @@ class Converter{
 		$text = str_replace('¶', 'è', $text);
 		
 		// Reversing occurances
-		$text = str_replace('Ô~', '~Ô', $text);
-		$text = str_replace('ÔQ', 'QÔ', $text);
-		$text = str_replace('¿ã', 'ã¿', $text);
-		$text = str_replace('¿Ç', 'Ç¿', $text);
-		$text = str_replace('¿Ñ', 'Ñ¿', $text);
-		$text = str_replace('ÃÑ', 'ÑÃ', $text);
-		$text = str_replace('Ãã', 'ãÃ', $text);
-		$text = str_replace('ÃÇ', 'ÇÃ', $text);
-		$text = str_replace('ˆH', 'Hˆ', $text);
-		$text = str_replace('ˆQ', 'Qˆ', $text);
-		$text = str_replace('ˆ~', '~ˆ', $text);
+		
+		$text = preg_replace('/([Ô¿Ãˆ])([+HQ~ãÇÑ])/u', "$2$1", $text);
 
 		// Consolidation of same glyphs at multiple code points
-		$text = preg_replace('/[íõ°¨Æ«»Œ◊]/u', 'í', $text); // అ
-		$text = preg_replace('/[åê•ß®ÍÏ]/u', 'å', $text); // ా
-		$text = preg_replace('/[ç≤˜]/u', 'ç', $text); // ి
-		$text = preg_replace('/[ô©‘]/u', 'ô', $text); // ీ
+		$text = preg_replace('/[íõ°¨Æ«»Œ◊]+/u', 'í', $text); // అ
+		$text = preg_replace('/[åê•ß®ÍÏ]+/u', 'å', $text); // ా
+		$text = preg_replace('/[ç≤˜]+/u', 'ç', $text); // ి
+		$text = preg_replace('/[ô©‘]+/u', 'ô', $text); // ీ
 		$text = preg_replace('/[∞μµΩΩ√]/u', '∞', $text); // ు
-		$text = preg_replace('/[ÄØ¥∂Ó]/u', 'Ä', $text); // ూ
-		$text = preg_replace('/[≥Ã‹Ôˇ]/u', '≥', $text); // ె
-		$text = preg_replace('/[¿ÕËıˆ]/u', '¿', $text); // ే
-		$text = preg_replace('/[ÿ·Â]/u', 'ÿ', $text); // ై
-		$text = preg_replace('/[∏⁄Á˘]/u', '∏', $text); // ొ
-		$text = preg_replace('/[À’ŸÈ]/u', 'À', $text); // ో
-		$text = preg_replace('/[∫øœ“Ò]/u', '∫', $text); // ౌ
-		$text = preg_replace('/[òü£±∑π]/u', 'ò', $text); // ్ // Caution zero width space present
+		$text = preg_replace('/[ÄØ¥∂Ó]+/u', 'Ä', $text); // ూ
+		$text = preg_replace('/[≥Ã‹Ôˇ]+/u', '≥', $text); // ె
+		$text = preg_replace('/[¿ÕËıˆ]+/u', '¿', $text); // ే
+		$text = preg_replace('/[ÿ·Â]+/u', 'ÿ', $text); // ై
+		$text = preg_replace('/[∏⁄Á˘]+/u', '∏', $text); // ొ
+		$text = preg_replace('/[À’ŸÈ]+/u', 'À', $text); // ో
+		$text = preg_replace('/[∫øœ“Ò]+/u', '∫', $text); // ౌ
+		$text = preg_replace('/[òü£±∑π]+/u', 'ò', $text); // ్ // Caution zero width space present
 
 		// ma group
 		$text = str_replace('=∞', 'మ', $text);
@@ -73,6 +64,7 @@ class Converter{
 
 		// jjha group
 		// ఝ ఝి ఝీ ఝు ఝూ ఝె ఝే ఝై ఝొ ఝో ఝౌ 
+		$text = str_replace('~í≠', 'ఝ', $text);
 		
 		// ha group
 		$text = str_replace('Çíå', 'హ', $text);
@@ -345,6 +337,10 @@ class Converter{
 		$vyanjana = "క|ఖ|గ|ఘ|ఙ|చ|ఛ|జ|ఝ|ఞ|ట|ఠ|డ|ఢ|ణ|త|థ|ద|ధ|న|ప|ఫ|బ|భ|మ|య|ర|ల|వ|శ|ష|స|హ|ళ|ఱ";
 		$swaraJoin = "ా|ి|ీ|ు|ూ|ృ|ౄ|ె|ే|ై|ొ|ో|ౌ|ం|ః|్";
 
+		// Swara
+		$text = preg_replace('/్[అ]/u', '', $text);
+		$text = preg_replace('/్([ాిీుూృౄెేైౖొోౌ్])/u', "$1", $text);
+
 		// Special cases gha, Cha, Jha, Dha, tha, dha, pha, bha 
 		$text = preg_replace("/($swaraJoin)([èäî])/u", "$2$1", $text);
 		$text = str_replace('చè', 'ఛ', $text);
@@ -354,7 +350,11 @@ class Converter{
 		$text = str_replace('పè', 'ఫ', $text);
 		$text = str_replace('బè', 'భ్', $text);
 		$text = str_replace('రî', 'ఠ', $text);
-		
+
+		// Spaces before ottu should be removed
+		$text = str_replace(' ్', "్", $text);
+		$text = str_replace(' ృ', "ృ", $text);
+
 		// Swara
 		$text = preg_replace('/్[అ]/u', '', $text);
 		$text = preg_replace('/్([ాిీుూృౄెేైౖొోౌ్])/u', "$1", $text);
@@ -374,11 +374,11 @@ class Converter{
 		$text = preg_replace("/్​్($vyanjana)/u", "్$1్​", $text);
 
 		// Ra ottu inversion
-		$text = preg_replace("/¢($vyanjana)/u", "$1" . "్ర", $text);
+		$text = preg_replace("/¢($vyanjana)/u", "$1" . "¢", $text);
+		$text = preg_replace("/¢్($vyanjana)/u", "్$1" . "¢", $text);
+		$text = str_replace("¢", "్ర", $text);
+		$text = str_replace("్య్ర", "్ర్య", $text);
 
-		// Spaces before ottu should be removed
-		$text = str_replace(' ్', "్", $text);
-		$text = str_replace(' ృ', "ృ", $text);
 		$text = str_replace('ౖ', "<!-- <error>ౖ</error> -->", $text);
 
 		// Final replacements
@@ -387,6 +387,9 @@ class Converter{
 		$text = str_replace('—', '’', $text);
 		$text = str_replace('‘‘', '“', $text);
 		$text = str_replace('’’', '”', $text);
+
+		$text = str_replace('బుు', 'ఋ', $text);
+		$text = str_replace('బుూ', 'ౠ', $text);
 
 		return $text;
 	}
