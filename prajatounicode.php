@@ -267,7 +267,7 @@
 		$text = str_replace('â', 'ೃ', $text);
 		$text = str_replace('ã', 'ೈ', $text);
 		$text = str_replace('ä', ',', $text);
-		$text = str_replace('å', '', $text); // handled separately inside span class english
+		$text = str_replace('å', '.', $text); // handled separately inside span class english
 		$text = str_replace('æ', 'ಬ್', $text);
 		$text = str_replace('ç', 'ನ್', $text);
 		$text = str_replace('è', 'ಳ್', $text);
