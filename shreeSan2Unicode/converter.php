@@ -13,7 +13,21 @@ class Converter{
 		// Reversing occurances
 		
 		// Consolidation of same glyphs at multiple code points
+		// danda
 		$text = str_replace('p', '"', $text);
+		//ikaara
+		$text = str_replace('[', 'q', $text);
+		$text = str_replace('{', 'q', $text);
+		// iikaara
+		$text = str_replace('”', 'r', $text);
+		//ukaara
+		$text = str_replace('l', 's', $text);
+		$text = str_replace('½', 's', $text);
+		//uukaara
+		$text = str_replace('m', 't', $text);
+		$text = str_replace('ó', 't', $text);
+		//RRikaara
+		$text = str_replace('–', 'w', $text);
 
 		// ma group
 		// jjha group
@@ -27,7 +41,7 @@ class Converter{
 		$text = str_replace('#', 'ः', $text);
 		$text = str_replace('$', '।', $text);
 		$text = str_replace('%', 'ॄ', $text);
-		$text = str_replace('&', '', $text);
+		$text = str_replace('&', 'ऽ', $text);
 		$text = str_replace("'", "छ्व", $text);
 		$text = str_replace('(', '(', $text);
 		$text = str_replace(')', ')', $text);
@@ -48,11 +62,11 @@ class Converter{
 		$text = str_replace('8', '८', $text);
 		$text = str_replace('9', '९', $text);
 		$text = str_replace(':', '॥', $text);
-		$text = str_replace(';', 'ङ्व', $text); // check
-		$text = str_replace('=', 'ङ्ग', $text); // check
-		$text = str_replace('>', '>', $text); // check
+		$text = str_replace(';', 'ड्व', $text);
+		$text = str_replace('=', 'ड्ग', $text);
+		$text = str_replace('>', '', $text); // Remove formatting space
 		$text = str_replace('?', '?', $text);
-		$text = str_replace('@', 'क्', $text);
+		$text = str_replace('@', 'क', $text);
 		$text = str_replace('A', 'ख्', $text);
 		$text = str_replace('B', 'ग्', $text);
 		$text = str_replace('C', 'घ्', $text);
@@ -79,9 +93,9 @@ class Converter{
 		$text = str_replace('X', 'म्', $text);
 		$text = str_replace('Y', 'य्', $text);
 		$text = str_replace('Z', 'र', $text);
-		$text = str_replace('[', 'ि', $text);
+		// $text = str_replace('[', 'ि', $text); // handled in pre
 		$text = str_replace("\\", 'व्', $text);
-		$text = str_replace(']', ']', $text); // check
+		$text = str_replace(']', '॑', $text); // vedic
 		$text = str_replace('^', 'ष्', $text);
 		$text = str_replace('_', 'स्', $text);
 		$text = str_replace('`', 'ह', $text);
@@ -96,30 +110,31 @@ class Converter{
 		$text = str_replace('i', 'द्व्र', $text);
 		$text = str_replace('j', 'द्घ्र', $text);
 		$text = str_replace('k', 'क्त्र', $text);
-		$text = str_replace('l', 'ु', $text); 
-		$text = str_replace('m', 'ू', $text);
+		// $text = str_replace('l', 'ु', $text); // handled in pre
+		// $text = str_replace('m', 'ू', $text); // handled in pre
 		$text = str_replace('n', '्न', $text); 
 		$text = str_replace('o', '्', $text);
-		$text = str_replace('p', 'p', $text); // pre
-		$text = str_replace('q', 'ि', $text);
+		// $text = str_replace('p', 'ा', $text); // handled in pre
+		// $text = str_replace('q', 'q', $text); // handled in invert ikaara
 		$text = str_replace('r', 'ी', $text);
 		$text = str_replace('s', 'ु', $text); 
 		$text = str_replace('t', 'ू', $text);
 		$text = str_replace('u', 'े', $text);
 		$text = str_replace('v', 'ै', $text);
 		$text = str_replace('w', 'ृ', $text);
-		$text = str_replace('x', 'ॅॅँ', $text);
+		$text = str_replace('x', 'ॅ', $text);
 		$text = str_replace('y', 'ँ', $text);
 		$text = str_replace('z', 'ं', $text);
-		$text = str_replace('{', 'ि', $text);
-		$text = str_replace('|', '|', $text); // post
-		$text = str_replace('}', '}', $text); // vedic
+		// $text = str_replace('{', 'ि', $text);  // handled in pre
+		$text = str_replace('|', 'êं', $text); // arka ottu
+		$text = str_replace('}', '᳚', $text); // vedic
 		$text = str_replace('~', '्र', $text);
-
+		$text = str_replace('¡', '', $text); // Remove formatting space
 		$text = str_replace('¢', 'ह्न', $text);
-		$text = str_replace('¤', '¤', $text); // check
-		$text = str_replace('¥', '¥', $text); // check
-		$text = str_replace('¦', '¦', $text); // check
+		$text = str_replace('£', '॒', $text); // vedic
+		$text = str_replace('¤', '¤', $text); // doubt vedic?
+		$text = str_replace('¥', '¥', $text); // doubt vedic?
+		$text = str_replace('¦', '¦', $text); // doubt vedic?
 		$text = str_replace('§', 'ॢ', $text);
 		$text = str_replace('¨', 'द्ब', $text);
 		$text = str_replace('©', 'द्द', $text);
@@ -135,18 +150,18 @@ class Converter{
 		$text = str_replace('´', 'ङ्घ्र', $text);
 		$text = str_replace('µ', 'ङ्क्त', $text);
 		$text = str_replace('¶', 'द्ग्र', $text);
-		$text = str_replace('·', '·', $text); // check
+		$text = str_replace('·', '·', $text); // doubt
 		$text = str_replace('¸', 'ङ्ख्र', $text);
-		$text = str_replace('¹', 'ङ्क्ष', $text); // might be a problem, not complete
+		$text = str_replace('¹', 'ङ्क्ष्', $text);
 		$text = str_replace('º', 'ङ्क्ष्व', $text);
-		$text = str_replace('»', '»', $text); // doubt
-		$text = str_replace('¼', '¼', $text); // doubt
-		$text = str_replace('½', 'ु', $text);
+		$text = str_replace('»', 'द्र्य', $text);
+		$text = str_replace('¼', 'द्व्य', $text);
+		// $text = str_replace('½', 'ु', $text); // handled in pre
 		$text = str_replace('¾', 'स्र', $text);
 		$text = str_replace('¿', 'द्द्व', $text);
 		$text = str_replace('À', 'द्द्र', $text);
 		$text = str_replace('Á', 'द्द्घ', $text);
-		$text = str_replace('Â', 'Â', $text); // doubt
+		$text = str_replace('Â', 'द्भ्य', $text);
 		$text = str_replace('Ã', 'स्न', $text);
 		$text = str_replace('Ä', 'श्व्', $text);
 		$text = str_replace('Å', 'श्न्', $text);
@@ -174,15 +189,16 @@ class Converter{
 		$text = str_replace('Û', 'ळ्', $text);
 		$text = str_replace('Ü', 'श्', $text);
 		$text = str_replace('Ý', 'ऱ्', $text);
-		$text = str_replace('Þ', 'Þ', $text);  // doubt
+		$text = str_replace('Þ', 'ह्', $text);
 		$text = str_replace('ß', 'न्न्', $text);
 		$text = str_replace('à', 'रु', $text);
 		$text = str_replace('á', 'रू', $text);
 		$text = str_replace('â', 'हृ', $text);
-		$text = str_replace('ä', 'ह्न', $text);
-		$text = str_replace('ã', 'प्ल', $text);
+		$text = str_replace('ã', 'ह्र', $text);
+		$text = str_replace('ä', 'प्ल', $text);
 		$text = str_replace('å', 'ह्य', $text);
-		$text = str_replace('ç', 'द्न', $text);
+		$text = str_replace('æ', 'द्न', $text);
+		$text = str_replace('ç', 'द्र', $text);
 		$text = str_replace('è', 'द्म', $text);
 		$text = str_replace('é', 'द्घ्र', $text);
 		$text = str_replace('ê', 'ê', $text); // arka ottu
@@ -192,22 +208,21 @@ class Converter{
 		$text = str_replace('î', 'ऊ', $text);
 		$text = str_replace('ï', 'ए', $text);
 		$text = str_replace('ð', 'श्', $text);
-		$text = str_replace('ñ', 'ñ', $text); // vedic
+		$text = str_replace('ñ', '॑', $text); // vedic
 		$text = str_replace('ò', 'इ', $text);
-		$text = str_replace('ó', 'ू', $text);
+		// $text = str_replace('ó', 'ू', $text); // handled in pre
 		$text = str_replace('ô', 'द्भ्र', $text);
 		$text = str_replace('õ', '्र', $text);
 		$text = str_replace('ö', '्न', $text);
-		$text = str_replace('÷', '÷', $text); // doubt
+		$text = str_replace('÷', '्य', $text);
 		$text = str_replace('ø', '्र', $text);
-		$text = str_replace('ù', 'ú', $text); // vedic
+		$text = str_replace('ù', '᳚', $text); // vedic
 		$text = str_replace('ú', 'ञ्च्', $text);
 		$text = str_replace('û', 'ङ्घ', $text);
 		$text = str_replace('ü', 'द्य', $text);
 		$text = str_replace('ý', 'ञ्ज्', $text);
 		$text = str_replace('þ', 'ङ्म', $text);
 		$text = str_replace('ÿ', 'द्ग', $text);
-		
 		$text = str_replace('Œ', 'ङ्ग', $text);
 		$text = str_replace('œ', 'ढ्ढ', $text);
 		$text = str_replace('Š', 'ङ्क', $text);
@@ -216,18 +231,18 @@ class Converter{
 		$text = str_replace('ƒ', 'ज्ज्', $text);
 		$text = str_replace('ˆ', 'ह्व', $text);
 		$text = str_replace('˜', 'क्त', $text);
-		$text = str_replace('–', 'ृ', $text);
-		$text = str_replace('—', '—', $text); // check
+		// $text = str_replace('–', 'ृ', $text); // handled in pre
+		$text = str_replace('—', '—', $text); // should be handled in pre, not handled for now, zha case
 		$text = str_replace('‘', '‘', $text);
 		$text = str_replace('’', '’', $text);
 		$text = str_replace('‚', 'च्च्', $text);
 		$text = str_replace('“', 'ल', $text);
-		$text = str_replace('”', 'ी', $text);
+		// $text = str_replace('”', 'ी', $text); // handled in pre
 		$text = str_replace('„', 'ल्ल', $text);
 		$text = str_replace('†', 'ह्ण', $text);
 		$text = str_replace('‡', 'ह्ल', $text);
 		$text = str_replace('•', 'ङ्क्ष', $text);
-		$text = str_replace('…', '…', $text); // doubt
+		$text = str_replace('…', '॒', $text); // vedic
 		$text = str_replace('‰', 'ड्ढ', $text);
 		$text = str_replace('‹', 'ङ्ख', $text);
 		$text = str_replace('›', 'ड्ड', $text);
@@ -240,6 +255,11 @@ class Converter{
 
 		// Swara
 		$text = preg_replace('/्[ा]/u', '', $text);
+	
+		$text = $this->invertIkara($text);
+		$text = $this->invertRepha($text);
+
+	
 		//~ $text = preg_replace('/్([ాిీుూృౄెేైౖొోౌ్])/u', "$1", $text);
 
 		//~ // Special cases gha, Cha, Jha, Dha, tha, dha, pha, bha 
@@ -293,6 +313,48 @@ class Converter{
 		//~ $text = str_replace('బుూ', 'ౠ', $text);
 
 		return $text;
+	}
+	
+	public function invertRepha($text) {
+
+		$vyanjana = "क|ख|ग|घ|ङ|च|छ|ज|झ|ञ|ट|ठ|ड|ढ|ण|त|थ|द|ध|न|ऩ|प|फ|ब|भ|म|य|र|ऱ|ल|ळ|ऴ|व|श|ष|स|ह|क़|ख़|ग़|ज़|ड़|ढ़|फ़|य़";
+		$swara = "अ|आ|इ|ई|उ|ऊ|ऋ|ऌ|ऍ|ऎ|ए|ऐ|ऑ|ऒ|ओ|औ";
+		$swaraJoin = "ा|ि|ी|ु|ू|ृ|ॄ|ॅ|ॆ|े|ै|ॉ|ॊ|ो|ौ|्|ं|ः|ऽ" ; 
+
+		$syllable = "($vyanjana)($swaraJoin)($swaraJoin)($swaraJoin)|($vyanjana)($swaraJoin)($swaraJoin)|($vyanjana)($swaraJoin)|($vyanjana)|($swara)";
+		
+		$text = 'zzz' . preg_replace("/($syllable|\s|[[:punct:]])/u", "$1zzz", $text);
+		$text = preg_replace("/्zzz/u", "्", $text);
+		
+		$text = str_replace("zzzê", "êzzz", $text);
+		$text = preg_replace("/z([^z]*?)êz/u", "zê$1z", $text);
+		$text = str_replace("ê", "र्", $text);
+		$text = str_replace("zzz", "", $text);
+
+		return($text);
+	}
+
+	public function invertIkara($text) {
+
+		$vyanjana = "क|ख|ग|घ|ङ|च|छ|ज|झ|ञ|ट|ठ|ड|ढ|ण|त|थ|द|ध|न|ऩ|प|फ|ब|भ|म|य|र|ऱ|ल|ळ|ऴ|व|श|ष|स|ह|क़|ख़|ग़|ज़|ड़|ढ़|फ़|य़";
+		$swara = "अ|आ|इ|ई|उ|ऊ|ऋ|ऌ|ऍ|ऎ|ए|ऐ|ऑ|ऒ|ओ|औ";
+		$swaraJoin = "ा|ि|ी|ु|ू|ृ|ॄ|ॅ|ॆ|े|ै|ॉ|ॊ|ो|ौ" ; 
+
+		$compoundConjunct = "($vyanjana)्($vyanjana)्($vyanjana)्($vyanjana)्($vyanjana)|($vyanjana)्($vyanjana)्($vyanjana)्($vyanjana)|($vyanjana)्($vyanjana)्($vyanjana)|($vyanjana)्($vyanjana)";
+		$swaraConjunct = "($compoundConjunct)($swaraJoin)|($vyanjana)($swaraJoin)|($compoundConjunct)";
+
+		$syllable = "($swaraConjunct)|($vyanjana)|($swara)";
+		
+		$text = preg_replace("/($syllable)/u", "$1zzz", $text);
+		$text = preg_replace("/्zzz/u", "्", $text);
+
+		$text = preg_replace("/([q])([^z]*?)zzz/u", "$2" . "$1zzz", $text);
+
+		$text = str_replace("zzz", "", $text);
+		
+		$text = str_replace('q', 'ि', $text);
+		
+		return($text);
 	}
 }
 	
