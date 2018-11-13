@@ -5,5 +5,6 @@
                     <li><a href="prajatounicode.php">Praja2Unicode</a></li>
                     <li><a href="shreelipikan.php">Shreelipi2Unicode(Kannada)</a></li>
                     <li><a href="anu2unicode.php">Anu2Unicode(Telugu)</a></li>
+                    <li><a href="nudi2unicode.php">Nudi2Unicode</a></li>
                 </ul>
             </div>
