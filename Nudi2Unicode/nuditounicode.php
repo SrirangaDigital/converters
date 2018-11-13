@@ -277,6 +277,9 @@ class Nuditounicode{
 		$text = str_replace('ಿÃ', 'ೀ', $text);//kiV
 		$text = str_replace('ೆÃ', 'ೇ', $text);//keV
 		$text = str_replace('ೊÃ', 'ೋ', $text);//koV		
+		
+		$text = str_replace('್​ð', '್ð', $text);//halanta+zwj+R = halanta+R
+		
 
 		$text = preg_replace("/($swaraJoin)್($vyanjana)/u", "್$2$1", $text);
 		
