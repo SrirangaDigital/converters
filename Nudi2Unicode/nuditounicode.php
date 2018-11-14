@@ -20,6 +20,7 @@ class Nuditounicode{
 		$text = str_replace('AiÀiË', 'ಯೌ', $text);
 		
 		//ma group
+		$text = str_replace('ªÀiï', 'ಮ್', $text);
 		$text = str_replace('ªÀÄ', 'ಮ', $text);
 		$text = str_replace('ªÀiÁ', 'ಮಾ', $text);
 		$text = str_replace('ªÉÄ', 'ಮೆ', $text);
@@ -317,8 +318,8 @@ class Nuditounicode{
 
 		// Final replacements
 		$text = str_replace(' ್', '್', $text);
-		$text = str_replace('||', '॥', $text);
-		$text = str_replace('|', '।', $text);
+		$text = str_replace('||', '||', $text);
+		$text = str_replace('|', '|', $text);
 				
 		return $text;
 	}
