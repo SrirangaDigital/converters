@@ -243,6 +243,32 @@ class Converter{
 
 		return $text;
 	}
+
+	public function parseHTML($html) {
+
+		$dom = new DOMDocument("1.0");
+		$dom->preserveWhiteSpace = false;
+		$dom->formatOutput = true;
+
+		$dom->loadXML($html);
+		$xpath = new DOMXpath($dom);
+
+		foreach($xpath->query('//text()') as $text_node) {
+
+			if(preg_replace('/\s+/', '', $text_node->nodeValue) === '') continue; 
+
+			if($text_node->parentNode->hasAttribute('class'))
+				if($text_node->parentNode->getAttribute('class') == 'en')
+					 continue;
+
+			$text_node->nodeValue = $this->shreeTam2Unicode($text_node->nodeValue);
+		}
+
+		$html = $dom->saveXML();
+		$html = html_entity_decode($html);
+
+		return $html;
+	}
 }
 	
 ?>

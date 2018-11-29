@@ -4,11 +4,10 @@ require_once 'converter.php';
 
 $converter = new Converter();
 
-$ansiText = file_get_contents('/home/sriranga/Documents/others/converters/shreeTam2Unicode/input.txt');
+$shreelipiText = file_get_contents('/var/www/html/yoga-sutra/xml-sources/tamil-bhashyam/tamil-bhashyam-shreelipi.xml');
 
-// $ansiText = $converter->utf82ansi($text);
-$unicodeText = $converter->shreeTam2Unicode($ansiText);
+$unicodeText = $converter->parseHTML($shreelipiText);
 
-file_put_contents('/home/sriranga/Documents/others/converters/shreeTam2Unicode/output.txt', $unicodeText);
+file_put_contents('/var/www/html/yoga-sutra/xml-sources/tamil-bhashyam/tamil-bhashyam.xml', $unicodeText);
 
 ?>
