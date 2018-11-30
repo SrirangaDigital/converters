@@ -21,6 +21,7 @@ class Nuditounicode{
 		
 		//ma group
 		$text = str_replace('ªÀiï', 'ಮ್', $text);
+		$text = str_replace('ªÀiË', 'ಮೌ', $text);		
 		$text = str_replace('ªÀÄ', 'ಮ', $text);
 		$text = str_replace('ªÀiÁ', 'ಮಾ', $text);
 		$text = str_replace('ªÉÄ', 'ಮೆ', $text);
@@ -49,6 +50,11 @@ class Nuditounicode{
 		//ha group
 		$text = str_replace('¨s', 'ಭ್', $text);
 		$text = str_replace('©ü', 'ಭಿ', $text);
+
+		//special 
+		$text = str_replace('¿õ', 'ೞ', $text);
+		$text = str_replace('¾õ', 'ಱ', $text);
+		
 
 		// RRi group
 		$text = str_replace('IÄ', 'ಋ', $text);
