@@ -68,7 +68,7 @@
             <div class="col-md-12">
                 <form action="akruti2Unicode.php" method="POST">
                     <div class="form-group">
-                        <label for="inputtext">Input Text (Nudi/Baraha)</label>
+                        <label for="inputtext">Input Text (Akruti)</label>
                         <textarea class="form-control" id="inputtext" name="inputtext" rows="8"><?php if(isset($_POST['inputtext'])){ echo $_POST['inputtext'];} ?></textarea>
                     </div>
                     <div class="text-center"> 
