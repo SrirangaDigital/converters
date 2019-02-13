@@ -38,7 +38,7 @@
 <?php
 
 	require "menu.php";
-	require "Akruti2Unicode/akrutitounicode.php";
+	require "AkrutiDev2Unicode/akrutidevtounicode.php";
 
 ?>
 
@@ -53,8 +53,8 @@
 
         $inputNudiText = $_POST['inputtext'];
 
-        $akruti2unicode = new Akrutidevtounicode();
-        $outputText = $akruti2unicode->akrutidev2Unicode($inputNudiText);
+        $akrutidev2Unicode = new Akrutidevtounicode();
+        $outputText = $akrutidev2Unicode->akrutidev2Unicode($inputNudiText);
     }
 
 ?>
@@ -66,7 +66,7 @@
                 <h1>Akruti Dev Bharati to Unicode converter</h1>
             </div>
             <div class="col-md-12">
-                <form action="akruti2Unicode.php" method="POST">
+                <form action="akrutidev2Unicode.php" method="POST">
                     <div class="form-group">
                         <label for="inputtext">Input Text (Akruti Dev Bharati)</label>
                         <textarea class="form-control" id="inputtext" name="inputtext" rows="8"><?php if(isset($_POST['inputtext'])){ echo $_POST['inputtext'];} ?></textarea>

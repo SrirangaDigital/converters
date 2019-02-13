@@ -7,7 +7,7 @@ class Akrutidevtounicode{
 		return $text;
 	}
 	
-	public function akrutidev2Unicode($text){
+	public function akrutidev2Unicode($contents){
 
 		$middleJoiner = "&|=|B|d|g|Q|s|t|w|W|x|X|z|Z|¸|Ç|ê|Ë|ï|Ï|Ò|Ò|ü|b|@";
 		$rightJoiner = "r";
@@ -321,8 +321,8 @@ class Akrutidevtounicode{
 
 		$contents = str_replace(' ञ् ', ' — ', $contents);
 
-		$contents = invertIkara($contents);
-		$contents = invertRepha($contents);
+		$contents = $this->invertIkara($contents);
+		$contents = $this->invertRepha($contents);
 
 		$contents = str_replace('ेा', 'ाे', $contents);
 		$contents = str_replace('ाै', 'ौ', $contents);
@@ -334,7 +334,7 @@ class Akrutidevtounicode{
 		return $contents;
 	}
 
-	function invertRepha($text) {
+	public function invertRepha($text) {
 
 		$vyanjana = "क|ख|ग|घ|ङ|च|छ|ज|झ|ञ|ट|ठ|ड|ढ|ण|त|थ|द|ध|न|ऩ|प|फ|ब|भ|म|य|र|ऱ|ल|ळ|ऴ|व|श|ष|स|ह|क़|ख़|ग़|ज़|ड़|ढ़|फ़|य़";
 		$swara = "अ|आ|इ|ई|उ|ऊ|ऋ|ऌ|ऍ|ऎ|ए|ऐ|ऑ|ऒ|ओ|औ";
@@ -353,7 +353,7 @@ class Akrutidevtounicode{
 		return($text);
 	}
 
-	function invertIkara($text) {
+	public function invertIkara($text) {
 
 		$vyanjana = "क|ख|ग|घ|ङ|च|छ|ज|झ|ञ|ट|ठ|ड|ढ|ण|त|थ|द|ध|न|ऩ|प|फ|ब|भ|म|य|र|ऱ|ल|ळ|ऴ|व|श|ष|स|ह|क़|ख़|ग़|ज़|ड़|ढ़|फ़|य़";
 		$swara = "अ|आ|इ|ई|उ|ऊ|ऋ|ऌ|ऍ|ऎ|ए|ऐ|ऑ|ऒ|ओ|औ";
