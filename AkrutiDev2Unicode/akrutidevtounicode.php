@@ -33,6 +33,7 @@ class Akrutidevtounicode{
 		$contents = str_replace('eq', 'q', $contents);
 		$contents = str_replace('er', 'r', $contents);
 		$contents = str_replace('ebr', 'rb', $contents); //check
+		$contents = str_replace('ebÀg', 'egbÀ', $contents); //check
 		$contents = str_replace('e|', '|', $contents);
 		$contents = str_replace('eÅ', 'Å', $contents);
 
