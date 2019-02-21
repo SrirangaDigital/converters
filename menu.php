@@ -9,5 +9,6 @@
                     <li><a href="shreeSan2Unicode.php">Shreelipi2Unicode(Sanskrit)</a></li>
                     <li><a href="akruti2Unicode.php">Akruti2Unicode(Kannada)</a></li>
                     <li><a href="akrutidev2Unicode.php">Akruti Dev Bharati2Unicode(Hindi)</a></li>
+                    <li><a href="shreelipi6kan.php">shreelipi6kan</a></li>
                 </ul>
             </div>
